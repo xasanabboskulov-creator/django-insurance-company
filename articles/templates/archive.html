@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Договоры страхования</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f4f6f9;
+            color: #333;
+        }
+        header {
+            background-color: #234a70;
+            color: white;
+            padding: 25px;
+            text-align: center;
+            border-radius: 8px;
+        }
+        .contract {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px #ccc;
+        }
+        h2 {
+            color: #234a70;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Страховая компания</h1>
+    <p>Договоры страхования</p>
+</header>
+
+<h2>Архив договоров</h2>
+
+{% for contract in contracts %}
+<div class="contract">
+    <h3>Договор №{{ contract.id }}</h3>
+    <p><strong>Клиент:</strong> {{ contract.client.full_name }}</p>
+    <p><strong>Агент:</strong> {{ contract.agent.full_name }}</p>
+    <p><strong>Филиал:</strong> {{ contract.branch.name }}</p>
+    <p><strong>Вид страхования:</strong> {{ contract.insurance_type.name }}</p>
+    <p><strong>Дата:</strong> {{ contract.date }}</p>
+    <p><strong>Страховая сумма:</strong> {{ contract.insurance_sum }}</p>
+    <p><strong>Страховая выплата:</strong> {{ contract.insurance_payment }}</p>
+    <p><strong>Зарплата агента:</strong> {{ contract.agent_salary }}</p>
+</div>
+{% empty %}
+<p>Договоры пока отсутствуют.</p>
+{% endfor %}
+
+</body>
+</html>
